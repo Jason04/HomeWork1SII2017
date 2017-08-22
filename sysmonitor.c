@@ -37,6 +37,26 @@ int main() {
 
 
 	///////////////////////////////////////////////Get CPU used/////////////////////////////////////////
+	
+	long double a[7], b[4], loadavg;
+    FILE *fp2;
+    char dump[50];
+
+    for(;;)
+    {
+        fp2 = fopen("/proc/stat","r");
+        fscanf(fp2,"%*s %Lf %Lf %Lf %Lf %Lf %Lf %Lf",&a[0],&a[1],&a[2],&a[3],&a[4],&a[5],&a[6]);
+        fclose(fp2);       
+
+        //loadavg = ((b[0]+b[1]+b[2]) - (a[0]+a[1]+a[2])) / ((b[0]+b[1]+b[2]+b[3]) - (a[0]+a[1]+a[2]+a[3]));
+        //printf("The current CPU utilization is : %Lf\n",loadavg);
+
+        printf("%Lf\n",100-(a[3]*100)/(a[0]+a[1]+a[2]+a[3]+a[4]+a[5]+a[6]));
+
+        
+        return 0;
+
+    }
 
 
 
