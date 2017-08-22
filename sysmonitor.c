@@ -2,25 +2,54 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char ch = ':';
+
 
 
 int main() {
+
+
+	//////////////////////////////////////////////Get used memory////////////////////////////////////
+	const char ch = ':';
 	FILE *fp;
 	char buf[100000];
+	char *p1;
+
 	fp = fopen("/proc/meminfo", "r");
 	
-	for(int i = 0; i <= 0; i++) {
+	for(int i = 0; i <= 2; i++) {
+
 		fgets(buf, 100000, fp);
+
+		p1 = strchr(buf, ch);
+
+		if(i==0){
+
+			printf("%s%s","MemTotal",p1);
+		}
+		if(i==2){
+
+			printf("%s%s","MemAvalible ",p1);
+		}
+		else{
+			//Nothing
+		}
+		
 	}
+	printf("%s%s\n","MemUsed: ","MemTotal - MemAvalible");
+	//printf("%s%s%llu", "MemTotal",p1, strtoull(p1, NULL, 10));
+	//printf("String after |%c| is - |%s|\n", ch, p1);
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	char *p1 = strchr(buf, ch );
 
-	//printf("%st%in", p1, strtoull(p1, NULL, 10));
+	///////////////////////////////////////////////Get CPU used/////////////////////////////////////////
+	
 
-	printf("String after |%c| is - |%s|\n", ch, p1);
 
-	  
+
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+
 
 
 	return 0;
